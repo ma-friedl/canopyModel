@@ -8,7 +8,7 @@
 
 4. LeafDat.R: code to read and summarize leaf-level reflectance data from Sophie Dillen
 
-5. B+GModel.R: code to invert LAIs from HLS VIs and plot results
+5. InvertB+G.R: code to invert LAIs from HLS VIs and plot results
 
 
 
