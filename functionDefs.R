@@ -113,8 +113,9 @@ setCanopyParms <- function(case='PAR') {
     
     tau.vis <<- alpha.vis         # assume leaf transmittance in vis same as reflectance
     tau.nir <<- 1-alpha.nir-0.1   # leaf transmittance in nir, assume absorption 0.1
-    soil.rho.vis <<- 0.063        # background reflectance in vis from HLS
-    soil.rho.nir <<- 0.206        # background reflectance in nir from HLS        
+    #soil.rho.vis <<- 0.063        # background reflectance in vis from HLS
+    soil.rho.vis <<- 0.080
+    soil.rho.nir <<- 0.210        # background reflectance in nir from HLS        
   } else {
     print('No Action: Prescribe Case: PAR or VIs')
   }

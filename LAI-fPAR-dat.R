@@ -6,7 +6,7 @@ source('Rscripts/functionDefs.R')
 source("Rscripts/LeafDat.R")
 
 # set overpass time
-ovp.time <- '15:05:00'
+ovp.time <- '15:15:00'
 
 # First, read data
 hfdat <- read.csv('Data/HF-LAI-fPAR-Data/hf_fpar_lai_11_1.csv',header=T)[,c(-1)]
@@ -97,7 +97,7 @@ ts.vis <- twostr_canopy(L=lai.range,
                         chiL=chi.canopy, 
                         mu=hfmu.range,
                         alpha=alpha.vis,
-                        tau=tau.vis, #        +0.02 to tune to HLS
+                        tau=tau.vis+ 0.02, #        +0.02 to tune to HLS
                         rhos=soil.rho.vis)
 
 ts.nir <- twostr_canopy(L=lai.range, 

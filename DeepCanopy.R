@@ -15,7 +15,10 @@ rug.coef <- 1.25       # for deep canopy, assume uniform (baseline = 1.25)
 L.deep <- 10           # deep canopy LAI
 p.diff.red <- 0.15     # original = 0.15
 p.diff.nir <- 0.10     # original = 0.10
-# note: I used 6S to estimate p.diff in each band 
+tau.adjust.red <- 0.03 # adjust tau for red based on fits with data
+tau.adjust.nir <- 0.01 # adjust tau for vis based on fits with data
+
+# note: for p.diff in red, nir I used 6S to estimate p.diff in each band 
 # http://www-loa.univ-lille1.fr/documents/LOA/informatique/logiciels/Wsixs/
 # Landsat8 bands, mid-latitude summer, continental atmosphere; tau=0.2 at 0.5 micrometers
 
@@ -72,7 +75,7 @@ mu.range<- cos(zenith(solar.info,-71.1,42.3)*pi/180)
 
 
 #######################################################
-### 3. Run two-stream for each DOY for LAI = L.dppe ###
+### 3. Run two-stream for each DOY for LAI = L.deep ###
 #######################################################
 
 # initialize generic canopy parameters for Temperate Decid Forest
@@ -83,14 +86,14 @@ ts.vis <- twostr_canopy(L=L.deep,
                         chiL=chi.canopy, 
                         mu=mu.range,
                         alpha=alpha.vis.fullyear,
-                        tau=tau.vis.fullyear,
+                        tau=tau.vis.fullyear + tau.adjust.red,
                         rhos=soil.rho.vis)
 
 ts.nir <- twostr_canopy(L=L.deep, 
                         chiL=chi.canopy, 
                         mu=mu.range,
                         alpha=alpha.nir,
-                        tau=tau.nir,
+                        tau=tau.nir + tau.adjust.nir,
                         rhos=soil.rho.nir)
 
 # compute K for SZA = 0 
